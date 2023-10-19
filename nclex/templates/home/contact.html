@@ -1,0 +1,30 @@
+{% extends 'home/layout.html'%}
+{% block title %}Contact Us{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="contact-page center">
+            <h1>Contact Us</h1>
+            <form id="contact-form">
+                {% csrf_token %}
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                <input type="email" id="email" name "email" placeholder="Your Email" required>
+                <input type="date" id="date" name="date" required>
+                <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+
+
+    <script>
+        // JavaScript for form submission (you can add your backend logic here)
+        document.getElementById("contact-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+            // You can add AJAX or other form submission logic here
+            // For this example, we'll just display a message
+            alert("Message sent successfully!");
+            // You can also redirect to a thank you page or do other actions here
+        });
+    </script>
+{% endblock %}

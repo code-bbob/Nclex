@@ -1,0 +1,147 @@
+
+/*
+
+  THIS IS A CSS FILE FULL OF HOVER EFFECTS AND ANIMATIONS.
+  THIS FILE IS ALL RESPONSIBLE FOR THE ENHANCEMENT OF THE 
+                     ELEMENTS RESPONSE...
+
+                       #THANKS !!
+
+
+*/
+
+/*               Effects for Container-Box
+                ----------------------------            */
+
+                .box:hover{
+                    /* box-shadow: 0px 0px 10px 0.2px black,0px 0px 20px 5px skyblue; */
+               }
+               
+               
+               /*                 Effects for Inputs
+                                 ----------------------                */
+               
+               .top:hover , .top:focus{
+               
+                   box-shadow: 1px 3px 10px 0.1px black !important;
+                   transition: 0.4s;
+               }
+               
+               .box:hover .top ,
+               .box:hover   .top{
+               
+                   box-shadow:0px 0px 3px 1px  blue;
+               }
+               
+               /*                   Effects for Title
+                                  ---------------------                */
+               
+               
+               .anim-typewriter {
+                     animation: typewriter 1s steps(8) 1s 1 normal both,
+                                blinkTextCursor 0.42s  steps(7) 4.5;
+               
+               }
+               
+               @keyframes typewriter {
+                     from {
+                             width: 0;
+                     }
+                     to {
+                           width:5.5em;
+                           border-right-color: transparent;
+                     }
+               }
+               
+               @keyframes blinkTextCursor {
+                     from {
+                           border-right-color:black;
+                     }
+                     to {
+                           border-right-color:transparent;
+                     }
+               }
+               
+               
+               /*             Effects for forgot password
+                             -----------------------------            */
+               
+               .fp:hover{
+               
+                   text-decoration: underline;
+                   color:dodgerblue;
+               
+               }
+               .fp:active{
+               
+               color: blue;
+               
+               }
+               
+               /*                Effect for login-button
+                                -------------------------             */
+               
+               
+               .btn:hover{
+               
+                   color :white !important;
+                   transition: .3s;
+                   box-shadow:inset 100px 0px 0px blue;
+               
+               }
+               
+               .box:hover  .btn , .box:hover.btn:not(:hover)  .btn{
+               
+                    color:blue;
+                    border-color: blue;
+               
+               }
+               
+               /*                     Effects for text.
+                                     -------------------               */
+               
+               .box:hover h1{
+               
+                   transition:0.50s;
+                      text-shadow: -1px -1px 4px  blue,1px 3px 4px gray;
+               
+               
+               }
+               
+               /*               Effects for Create new button.
+                               --------------------------------       */
+               
+               .box:hover .btn-cn  {
+               
+                 color : blue;
+               
+               }
+               
+               button:hover, button:focus{
+               
+               background-color:blue;
+               font-size: 1.2rem;
+               color:white !important;
+               padding:.2rem .4rem ;
+               box-shadow: 2px 2px 5px 1px  black,-1px 0px 2px black;
+               border-radius: .4rem;
+               
+               }
+               
+               /*               Effects for Eye-Button            
+                               ------------------------                */
+               
+               
+               #hide:hover ~ code ,
+               #see:hover ~ code {
+               
+               visibility: visible;
+               top: 0.35;
+               
+               }
+               
+               #hide:focus {
+               
+               color:blue;
+               
+               }

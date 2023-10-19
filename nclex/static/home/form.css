@@ -1,0 +1,396 @@
+  
+  *{
+
+    margin: 0;
+    padding: 0;
+
+}
+body{
+    background:linear-gradient(rgba(188, 188, 204,.1),rgba(22, 21, 21, 0.3)), url('bg.jpg');
+    background-position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    
+}
+
+.container{
+    margin-top:8rem;
+}
+
+.box{
+
+    box-sizing: border-box;
+    width:22rem;
+    background:#f0ededc0;
+    height:600px;
+    padding:10px 40px;
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    border-radius: 50px;
+    text-align:center;
+    /* box-shadow: 0px 0px 10px 0.2px black,
+                0px 0px 20px 10px lightgreen; */
+                box-shadow: .5rem  .4rem .3rem rgba(43, 39, 39, 0.932) ,
+                                       5rem  .1rem   50rem  .05rem  whitesmoke,
+                                       -.05rem  -.02rem   .37rem .3rem  whitesmoke; 
+}
+
+
+ .img-container{
+
+    height: 135px;
+    width: 145px;
+    position: absolute;
+    top:0.6rem;
+    left:6.2rem;
+    border-radius:50%;
+    box-shadow: inset -.5px .5px 1px gray,
+                inset 3px -7px 11px black;
+   background: url(user.png);
+   background-color:whitesmoke;
+    background-size:190px 170px;
+    background-repeat: no-repeat;
+    background-position: -20px -9px;
+   cursor: pointer;
+
+}
+
+
+.title{
+
+    color:white;
+    font-family: 'Josefin Sans', sans-serif;
+    text-shadow: -1px -1px 4px  green,
+                 1px 3px 4px gray; 
+    font-size: 2.5rem;
+    margin:1.6rem auto ;
+    position: relative;
+    top:1rem;
+    white-space: nowrap;
+    border-right: .15rem solid white;
+    overflow: hidden;
+
+}
+
+.top {
+
+    width:10rem;
+    height:1rem;
+    display:flex;
+    border-radius: 15px;
+    padding:10px 10px 10px 38px;
+    box-shadow:0px 0px 3px 1px green;
+    transition:box-shadow 0.10s;
+    outline-color:transparent;
+    border-color:transparent;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    color:rgba(0,0,0,.68);
+    background: white;
+    align-items: center;
+    transform: translateX(-5px);
+
+}
+.top[type=text]
+{
+text-transform: capitalize;
+
+}
+
+.area {
+
+
+border-radius: 1.5rem;
+transform:translateX(-.2rem);
+padding: 0.9rem 0rem .8rem 0.20rem;
+box-shadow:3px 3px 7px rgb(0, 0, 0),-2px -1px 2px rgb(194, 193, 193);
+background-color:#ffff;
+
+
+}
+
+.fp{
+
+    position: relative;
+    top:-0.9rem;
+    text-decoration: none;
+    color:gray;
+    transition: text-decoration 0.5s;
+    box-sizing: border-box;
+    border-color: black;
+
+}
+
+.btn{
+
+    width:100px;
+    height:40px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    margin-bottom: 8px;
+    background: 0%;
+    color:green;
+    border:2px solid green;
+    transition: 0.4s ease;
+    cursor: pointer;
+    font-family: cursive;
+    background: none;
+    box-shadow:inset 0px 0px 0px blue;
+
+
+}
+
+
+hr{
+    margin-top: 0.7rem;
+}
+
+p{
+
+    margin-bottom:3px;
+    margin-top:5px;
+    color:#404541;
+    font-weight: bold;
+
+}
+.btn-cn{
+
+    text-decoration: none;
+    font-family: 'Roboto slab';
+    font-size: 18px;
+    margin-top:-10px;
+    background-color:transparent;
+    border: none;
+    color:green;
+    cursor: pointer;
+    transition: .35s ease-out;
+
+
+}
+
+.name{
+    font-family:'Roboto slab',consolas;
+    color: gray;
+    cursor:text;
+    position:relative;
+    top:-2rem;
+    left:-1.7rem;
+    pointer-events: none;
+    transition: 0.3s;  
+}
+
+input[type=text]:focus ~  .name ,
+input[type=text]:valid ~  .name {
+
+        font-size: 0.76rem;
+        top:-3.15rem;
+        left:-2.6rem;
+        background:#ffff;
+        font-family: 'Roboto slab', serif;
+        color:gray;
+        font-weight:bold;
+        padding: 0rem .15rem;
+
+
+}
+.email{
+
+    font-family:'Roboto slab',consolas;
+     color: gray;
+    cursor:text;
+    position:relative;
+    pointer-events: none;
+    top:-2rem;
+    left:-2.5rem;
+    transition: 0.3s;
+    text-align:left;
+
+}
+
+input[type=email]:focus ~  .email,
+input[type=email]:valid~  .email{
+
+        font-size: 0.8rem;
+        top:-3.17rem;
+        padding: 0rem .15rem;
+        left:-2.9rem;
+        background-color:#ffff;
+        font-family: 'Lato', sans-serif;
+}
+
+.password{
+
+    font-family:'Roboto slab',consolas;
+    color: gray;
+    pointer-events: none;
+    cursor:text;
+    position:relative;
+    top:-2rem;
+    left:-4rem;
+    transition: 0.3s;
+
+}
+
+input[type=password]:focus ~  .password,
+input[type=password]:valid ~  .password{
+
+        font-size: 0.8rem;
+        top:-3.15rem;
+        left:-4.8rem;
+        background-color:#ffff;
+    font-family: 'Lato', sans-serif;
+    padding: 0rem .15rem;
+
+} 
+
+.top[type=password]{
+
+padding: 10px 39px;
+width: 8.1rem;
+
+}
+
+#hide{
+
+position:relative;
+float:right;
+left: -2.3rem;
+top: -1.9rem;
+color:gray;
+cursor: pointer;
+visibility:hidden ;
+
+}
+
+.top[type=password]:valid ~  #hide{
+
+visibility:visible;
+
+}
+.top[type=password]:valid  ~ #see{
+
+visibility:visible;
+
+}
+
+#see{
+
+position:relative;
+float:right;
+left: -2.3rem;
+top: -1.9rem;
+color: gray;
+display: none;
+cursor: pointer;
+
+}
+
+code{
+
+font-size:.8rem;
+font-family:lato;
+position:relative;
+left:10rem;
+color:whitesmoke;
+visibility: hidden;
+background-color:gray;
+padding: .2rem .5rem;
+
+
+}
+
+.box:hover i {
+
+     color:blue;
+
+}
+
+.textbox{
+
+    width: 100%;
+    padding: 5px 0;
+
+}
+
+.textbox i{
+
+ position: relative;
+    color:green;
+    padding:0;
+    margin: 0;
+    z-index: 2;
+    float:left;
+    left: 2.15rem;
+    top:1rem;
+    border-radius:15px 0 0 15px;
+    padding: .1rem .5rem;
+
+}
+
+ input:focus .textbox i{
+
+    left: 2.78rem;
+    top: 0.03rem;
+    background:gray;
+    height:34px;
+    width: 20px;
+    border-radius:15px 0 0 15px;
+    padding: .1em .5em;
+    color:white; 
+
+}
+/*
+i::after{
+
+content:'';
+background-color: gray;
+height:2.4rem;
+width:2px;
+right:0rem;
+top:-.95rem;
+position: absolute;
+transition: 0.5s;
+
+}
+
+.fp::after{
+
+content:'';
+background-color:;
+height:1.5px;
+width:19rem;
+right:-5.5rem;
+top:-.9rem;
+position: absolute;
+transition: 0.5s;
+
+
+} */
+
+ .hidden{
+
+    display:none;
+ position: relative;
+    color:green;
+    padding:0;
+    margin: 0;
+    z-index: 2;
+    float:left;
+    left: 2.15rem;
+    top:1rem;
+    border-radius:15px 0 0 15px;
+    padding: .1rem .5rem;
+
+ }
+
+

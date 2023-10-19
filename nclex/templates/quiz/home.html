@@ -1,0 +1,13 @@
+{% extends 'home/index.html' %}
+{% block title %}quiz{% endblock %}
+
+{% block body %}
+  <form>
+    <select name="scategory">
+      {% for category in categories %}
+        <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit">submit</button>
+  </form>
+{% endblock %}
