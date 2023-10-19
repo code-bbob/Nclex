@@ -1,23 +1,23 @@
-{% extends 'home/index.html' %}
-{% block title %}Quiz - {{ selected_category }}{% endblock %}
-
+{% extends 'home/layout.html' %}
 {% block body %}
-  <h1>Quiz - {{ selected_category }}</h1>
-  <form method="post" action="{% url 'quiz:quiz' %}">
-    {% csrf_token %}
-    {% for question in questions %}
-      <div class="question">
-        <p>{{ question.question }}</p>
-        <ul>
-          {% for answer in question.question_answer.all %}
-            <li>
-              <input type="radio" name="question_{{ question.id }}" value="{{ answer.id }}" id="answer_{{ answer.id }}">
-              <label for="answer_{{ answer.id }}">{{ answer.answer }}</label>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
-    {% endfor %}
-    <button type="submit">Submit</button>
-  </form>
+    <h1>Quiz</h1>
+    
+    <form method="post" action="{% url 'quiz:quiz' %}">
+        {% csrf_token %}
+        
+        <div class="question">
+            <p>{{ question.question }}</p>
+            <ul>
+                {% for answer in question.question_answer.all %}
+                    <li>
+                        <input type="radio" name="answer" value="{{ answer.id }}" id="answer_{{ answer.id }}">
+                        <label for="answer_{{ answer.id }}">{{ answer.answer }}</label>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <input type="hidden" name="current_question" value="{{ question.id }}">
+        <button type="submit">Submit</button>
+    </form>
 {% endblock %}
