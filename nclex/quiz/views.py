@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse, JsonResponse
 from .models import *
 import random
+from django.contrib import messages
 
 # Create your views here.
 
@@ -40,25 +41,42 @@ def get_quiz(request):
               'data': data}
     return JsonResponse(payload)
 
-
+import ast
+import json
 def quiz(request):
 
     selected_category = request.GET.get('category')
     if request.method == 'POST':
+        selected_category = request.POST.get('selected_category')
         current_question_id = request.POST.get('current_question')
         selected_answer_id = request.POST.get('answer')
+        solved_questions = ast.literal_eval(request.POST.get('solved_questions'))   
         current_question = Question.objects.get(pk=current_question_id)
         correct_answer = Answer.objects.filter(question=current_question, is_correct=True).first()
         correct_answer_id = correct_answer.id
+
+        next_question = []
+        solved_questions.add(current_question_id)
+        # solved_questions = [ int(q) for q in solved_questions]
+        print("solved_questions",solved_questions)
+        print("selected_category",selected_category)
         if selected_answer_id == str(correct_answer_id):
-            next_question = Question.objects.filter(category__category_name=selected_category, pk__gt=current_question_id).first()
+            print(Question.objects.filter(category__category_name=selected_category))
+            if solved_questions:
+                
+                next_question = Question.objects.filter(category__category_name=selected_category).exclude(id__in=solved_questions).first()
+            
+
+
+            # next_question = Question.objects.filter(category__category_name=selected_category, pk__gt=current_question_id).first()
             if next_question:
-                return render(request, 'quiz/quiz.html', {'question': next_question})
+                return render(request, 'quiz/quiz.html', {'selected_category': selected_category,'question': next_question,'solved_questions':solved_questions})
             else:
                 # User has completed all questions
                 return HttpResponse("Congratulations! You have completed the quiz.")
         else:
-            return HttpResponse("Not correct")
+            messages.error(request,"Please Select Correct Answer")
+            return render(request, 'quiz/quiz.html', {'selected_category': selected_category,'question': current_question,'solved_questions':solved_questions})
 
 
     question = Question.objects.filter(category__category_name=selected_category).first()
@@ -66,5 +84,6 @@ def quiz(request):
     context = {
         'selected_category': selected_category,
         'question': question,
+        "solved_questions":set()
     }
     return render(request,'quiz/quiz.html', context)

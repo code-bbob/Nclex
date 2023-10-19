@@ -1,23 +1,37 @@
 {% extends 'home/layout.html' %}
 {% block body %}
-    <h1>Quiz</h1>
-    
-    <form method="post" action="{% url 'quiz:quiz' %}">
-        {% csrf_token %}
-        
-        <div class="question">
-            <p>{{ question.question }}</p>
-            <ul>
-                {% for answer in question.question_answer.all %}
-                    <li>
-                        <input type="radio" name="answer" value="{{ answer.id }}" id="answer_{{ answer.id }}">
-                        <label for="answer_{{ answer.id }}">{{ answer.answer }}</label>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
+<h1>Quiz</h1>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
 
-        <input type="hidden" name="current_question" value="{{ question.id }}">
-        <button type="submit">Submit</button>
-    </form>
+    {%if message.tags == 'error'%}
+    <div class="alert alert-danger text-center fw-bold" role="alert">
+        {{ message }}
+    </div>
+    {%endif%}
+    {# <li{% if message.tags %} class="{{ message.tags }} fw-bold" {% endif %}>{{ message }}</li>#}
+
+        {% endfor %}
+</ul>
+{% endif %}
+<form method="post" action="{% url 'quiz:quiz' %}">
+    {% csrf_token %}
+
+    <div class="question">
+        <p>{{ question.question }}</p>
+        <ul>
+            {% for answer in question.question_answer.all %}
+            <li>
+                <input type="radio" name="answer" value="{{ answer.id }}" id="answer_{{ answer.id }}">
+                <label for="answer_{{ answer.id }}">{{ answer.answer }}</label>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <input type="hidden" name="solved_questions" value="{{solved_questions}}">
+    <input type="hidden" name="selected_category" value="{{selected_category}}" id="">
+    <input type="hidden" name="current_question" value="{{ question.id }}">
+    <button type="submit">Submit</button>
+</form>
 {% endblock %}
