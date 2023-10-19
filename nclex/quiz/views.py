@@ -15,8 +15,6 @@ def home(request):
 
     return render(request,'quiz/home.html', context)
 
-def quiz(request):
-    return render(request,'quiz/quiz.html')
 
 def get_quiz(request):
     question_objs= list(Question.objects.all())
@@ -41,3 +39,14 @@ def get_quiz(request):
     payload= {'status': True,
               'data': data}
     return JsonResponse(payload)
+
+
+def quiz(request):
+    selected_category = request.GET.get('category')
+
+    questions = Question.objects.filter(category__category_name=selected_category)
+    context = {
+        'selected_category': selected_category,
+        'questions': questions,
+    }
+    return render(request,'quiz/quiz.html', context)
