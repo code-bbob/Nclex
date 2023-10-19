@@ -42,24 +42,24 @@ def get_quiz(request):
 
 
 def quiz(request):
+
+    selected_category = request.GET.get('category')
     if request.method == 'POST':
         current_question_id = request.POST.get('current_question')
         selected_answer_id = request.POST.get('answer')
         current_question = Question.objects.get(pk=current_question_id)
         correct_answer = Answer.objects.filter(question=current_question, is_correct=True).first()
         correct_answer_id = correct_answer.id
-        print(correct_answer)
-        print(selected_answer_id)
         if selected_answer_id == str(correct_answer_id):
-            next_question = Question.objects.filter(pk__gt=current_question_id).first()
+            next_question = Question.objects.filter(category__category_name=selected_category, pk__gt=current_question_id).first()
             if next_question:
                 return render(request, 'quiz/quiz.html', {'question': next_question})
             else:
                 # User has completed all questions
                 return HttpResponse("Congratulations! You have completed the quiz.")
+        else:
+            return HttpResponse("Not correct")
 
-
-    selected_category = request.GET.get('category')
 
     question = Question.objects.filter(category__category_name=selected_category).first()
     print (question)
