@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Contact
+from datetime import datetime
 # Create your views here.
 @login_required(login_url='/login')
 def index(request):
@@ -52,7 +53,8 @@ def contact(request):
         name = request.POST.get('name')
         email = request.POST.get('email')
         message = request.POST.get('message')
-        contact = Contact(name=name, email=email, message=message, date=datetime.today())
+        date = request.POST.get('datetime')
+        contact = Contact(name=name, email=email, text=message, date= datetime.today())
         contact.save()
         print("done")
     
