@@ -63,14 +63,17 @@ def quiz(request):
         if selected_answer_id == str(correct_answer_id):
             print(Question.objects.filter(category__category_name=selected_category))
             if solved_questions:
-                
-                next_question = Question.objects.filter(category__category_name=selected_category).exclude(id__in=solved_questions).first()
-            
-
-
-            # next_question = Question.objects.filter(category__category_name=selected_category, pk__gt=current_question_id).first()
+                next_question = Question.objects.filter(category__category_name=selected_category).exclude(id__in=solved_questions)
+                next_question = list(next_question)
+                random.shuffle(next_question)
+               
             if next_question:
-                return render(request, 'quiz/quiz.html', {'selected_category': selected_category,'question': next_question,'solved_questions':solved_questions})
+                next_question = next_question[0]
+                next_question_answers = list(next_question.question_answer.all())
+                random.shuffle(next_question_answers)
+                return render(request, 'quiz/quiz.html', {'selected_category': selected_category, 'question': next_question, 'solved_questions': solved_questions, 'shuffled_answers': next_question_answers})
+            # next_question = Question.objects.filter(category__category_name=selected_category, pk__gt=current_question_id).first()
+                
             else:
                 # User has completed all questions
                 return HttpResponse("Congratulations! You have completed the quiz.")
